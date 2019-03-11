@@ -1,0 +1,85 @@
+﻿
+@using MbmStore.Models
+@using MbmStore.Infrastructure
+@using MbmStore.ViewModels
+@using MbmStore.Infrastructure.Binders
+@using MbmStore.Controllers
+@using MbmStore.Infrastructure
+@using MbmStore.HtmlHelpers
+@model MbmStore.ViewModels.ProductsListViewModel
+
+
+@{
+    ViewBag.Title = "Catalogue";
+}
+
+@using (Html.BeginForm("Index", "Cart"))
+{
+    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+    <input type="submit" class="btn btn-success" value="View Cart" />
+}
+
+
+
+<h4 class="mx-auto pt-5" style="width: 200px;">Catalogue</h4>
+
+
+<!-- Working code -->
+
+
+
+<div class="row">
+    @if (Model.Products.OfType<MusicCD>().Count() > 0)
+    { 
+       
+        foreach (Product MusicCD in Model.Products.OfType<MusicCD>().ToList())
+        {
+    <div class="col-md-6">
+        <h1>MusicCD</h1>
+        @Html.Partial("ProductSummaryMusicCD", MusicCD)
+    </div>
+        }
+    }
+</div>
+<!--render products-->
+
+<div class="row">
+    @if (Model.Products.OfType<Book>().Count() > 0)
+    {
+       
+        foreach (Product Book in Model.Products.OfType<Book>().ToList())
+        {
+    <div class="col-md-6">
+        <h1>Book</h1>
+        @Html.Partial("ProductSummaryBook", Book)
+    </div>
+        }
+    }
+</div>
+
+
+<div class="row">
+    @if (Model.Products.OfType<Movie>().Count() > 0)
+    {
+        
+        foreach (Product Movie in Model.Products.OfType<Movie>().ToList())
+        {
+    <div class="col-md-6">
+        <h1>Movie</h1>
+        @Html.Partial("ProductSummaryMovie", Movie)
+    </div>
+        }
+    }
+</div>
+
+
+
+      
+<div>
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new
+    {
+        page = x,
+        category =
+        Model.CurrentCategory
+    }))
+</div>
