@@ -1,0 +1,29 @@
+﻿@using MbmStore.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+@Html.ActionLink("Home", "Index", "Home")
+
+@foreach (var book in ViewBag.Book)
+{
+<div class="col-6">
+    <h2> @book.title</h2>
+    <h3>Author: @book.author</h3>
+    <p>Price: @book.price </p>
+    <p><img src="@book.imageUrl" alt="@book.title" class="img-fluid" width="300px"/> </p>
+</div>
+}
+
+
+
+@helper RenderBook(Book book)
+    { 
+<div class="col-6">
+    <h2> @book.title</h2>
+    <h3>Author: @book.author</h3>
+    <p>Price: @book.price </p>
+    <p><img src="@book.imageUrl" alt="@book.title" class="img-fluid" width="300px"/> </p>
+</div>
+
+} 
