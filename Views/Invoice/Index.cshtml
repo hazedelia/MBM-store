@@ -1,0 +1,59 @@
+﻿@using MbmStore.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@helper RenderInvoice(Customer customer)
+{
+<tr>
+    <td>@customer.getFirstname() @customer.getLastname()</td>
+    <td>
+        @foreach (var invoice in customer.Invoices)
+    {
+        foreach (var orderItem in invoice.OrderItems)
+        {
+            @orderItem.product.title <br />
+    }
+    <strong>Total</strong><br />
+}
+
+    </td>
+    <td>
+        @foreach (var invoice in customer.Invoices)
+    {
+        foreach (var orderItem in invoice.OrderItems)
+        {
+            @orderItem.getTotalPrice() <br />
+    }
+    <strong>@invoice.TotalPrice</strong><br />
+}
+
+    </td>
+</tr>
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Customer
+            </th>
+            <th>
+                Product
+            </th>
+            <th>
+                Price
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Customer customer in ViewBag.Customers)
+        {
+                @RenderInvoice(customer)
+        }
+
+       
+    </tbody>
+</table>
