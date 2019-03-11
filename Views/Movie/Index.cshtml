@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@Html.ActionLink("Home", "Index", "Home")
+
+@foreach (var movie in ViewBag.Movies)
+{
+
+    <h2> @movie.title</h2>
+    <h3>Directory by: @movie.getDirector()</h3>
+    <p>Price: @String.Format("{0:0.00}", movie.price) </p>
+    <p><img src="@movie.imageUrl" alt="@movie.title" class="img-fluid" width="300"/> </p>
+}
