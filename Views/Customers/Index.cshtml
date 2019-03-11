@@ -1,0 +1,46 @@
+﻿@using MbmStore.Models
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@helper RenderCustomer(Customer customer)
+    {
+
+        <h2 class="pt-5">@customer.getFirstname() @customer.getLastname()</h2>
+        <span></span>
+
+
+        <p>
+            <strong>Address: </strong> @customer.getAddress() <br />
+            <strong>City:</strong> @customer.getZip()
+            <span>- @customer.getCity()</span>
+            <br />
+            <span> <strong> Age: </strong>@customer.age</span>
+            <br />
+            <strong> Phone: </strong>
+            @String.Join(", ", customer.PhoneNumbers.ToArray())
+
+
+
+        </p>
+        <hr>
+}
+
+
+
+
+
+@foreach (var customer in ViewBag.Customers)
+
+{
+
+    @RenderCustomer(customer)
+}
+
+
+
+
+
