@@ -1,0 +1,26 @@
+﻿
+@model MbmStore.Models.Movie
+
+
+<div class="row">
+    <div>
+        <div class="">
+            <img src="@Model.imageUrl" width="300" />
+        </div>
+        <div class="">
+            <strong>Title:</strong> @Model.title<br />
+            <strong>Author:</strong> @Model.Director<br />
+            <strong>Price:</strong> @Model.price<br />
+          
+        </div>
+
+
+        @using (Html.BeginForm("AddToCart", "Cart"))
+        {
+            @Html.Hidden("ProductId", Model.productid)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" class="btn btn-success" value="Add to cart" />
+        }
+
+    </div>
+</div>

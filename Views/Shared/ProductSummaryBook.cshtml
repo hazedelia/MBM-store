@@ -1,0 +1,27 @@
+﻿
+@model MbmStore.Models.Book
+
+
+<div class="row">
+    <div>
+        <div class="">
+            <img src="@Model.imageUrl" width="300" />
+        </div>
+        <div class="">
+            <strong>Title:</strong> @Model.title<br />
+            <strong>Author:</strong> @Model.author<br />
+            <strong>Price:</strong> @Model.price<br />
+            <strong>Publisher:</strong> @Model.publisher (@Model.published)<br />
+            <strong>ISBN:</strong> @Model.ISBN<br /> <br />
+        </div>
+
+        
+            @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                @Html.Hidden("ProductId", Model.productid)
+                @Html.Hidden("returnUrl", "http://lindabuile.dk/mbmstore/")
+                <input type="submit" class="btn btn-success" value="Add to cart" />
+            }
+        
+    </div>
+    </div>
